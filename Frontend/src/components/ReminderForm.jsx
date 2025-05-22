@@ -18,7 +18,7 @@ export default function ReminderForm() {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:5000/api/reminders", form);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reminders`, form);
             console.log("Reminder saved:", response.data);
             alert("Reminder saved successfully!");
 

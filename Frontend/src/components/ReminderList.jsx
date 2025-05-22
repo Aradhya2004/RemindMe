@@ -22,7 +22,7 @@ export default function ReminderList() {
 
     const fetchReminders = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/api/reminders");
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/reminders`);
             setReminders(res.data);
         } catch (err) {
             console.error("Failed to fetch reminders:", err);
@@ -34,7 +34,7 @@ export default function ReminderList() {
         if (!window.confirm("Are you sure you want to delete this reminder?")) return;
 
         try {
-            await axios.delete(`http://localhost:5000/api/reminders/${id}`);
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/reminders/${id}`);
             setReminders(reminders.filter((r) => r._id !== id));
         } catch (err) {
             console.error("Failed to delete reminder:", err);
@@ -62,7 +62,7 @@ export default function ReminderList() {
     // Save edited reminder
     const handleSave = async (id) => {
         try {
-            const res = await axios.put(`http://localhost:5000/api/reminders/${id}`, editForm);
+            const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/reminders/${id}`, editForm);
             setReminders(reminders.map(r => (r._id === id ? res.data : r)));
             setEditingId(null);
         } catch (err) {
