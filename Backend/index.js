@@ -9,6 +9,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Serve static files from React build
+app.use(express.static(path.join(__dirname, 'build')));
+
+// Fix: For all unmatched routes, serve index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 // Middleware
 app.use(cors());
 app.use(express.json());
