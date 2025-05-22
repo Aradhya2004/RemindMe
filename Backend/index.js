@@ -7,6 +7,7 @@ import reminderRoutes from "./routes/reminderRoutes.js";
 dotenv.config();
 
 const app = express();
+const path = require('path');
 const PORT = process.env.PORT || 5000;
 
 // Serve static files from React build
